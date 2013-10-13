@@ -62,16 +62,20 @@ public class BSTree{
 
     private boolean isBinarySearchTree(TreeNode node, int min, int max){
         if(node == null) return true;
-        if((node.val < max && node.val > min)
+        return((node.val < max && node.val > min)
                 && isBinarySearchTree(node.left, Integer.MIN_VALUE, node.val)
-                && isBinarySearchTree(node.right, node.val, Integer.MAX_VALUE))
-            return true;
-        else
-            return false;
+                && isBinarySearchTree(node.right, node.val, Integer.MAX_VALUE));
     }
 
-    private boolean isMirrorTree(TreeNode node) {
-        return false;
+    /**
+     * Is mirror tree's?
+     */
+    private boolean isMirrorTree(TreeNode node1, TreeNode node2) {
+        if(node1 == null && node2 == null) return true;
+        if((node1 != null && node2 == null) || (node1 == null && node2 != null)) return false;
+        return((node1.getVal() == node2.getVal()) &&
+                isMirrorTree(node1.left, node2.right) &&
+                isMirrorTree(node1.right, node2.left));
     }
 
     public void addNode(int val){
@@ -117,12 +121,16 @@ public class BSTree{
         return this.root;
     }
 
+    public void setRoot(TreeNode node){
+        this.root = node;
+    }
+
     public boolean isBST(){
         return isBinarySearchTree(this.root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
     public boolean isMirror(){
-        return isMirrorTree(this.root);
+        return isMirrorTree(this.root.left, this.root.right);
     }
 
 }

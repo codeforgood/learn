@@ -9,6 +9,7 @@ package com.sravi.tree;
  */
 public class TreeNode {
     int val;
+
     TreeNode left;
     TreeNode right;
 
@@ -20,5 +21,25 @@ public class TreeNode {
 
     public int getVal(){
         return this.val;
+    }
+
+    public void setVal(int val){
+        this.val = val;
+    }
+
+    public TreeNode getLeft() {
+        return left;
+    }
+
+    public void setLeft(TreeNode left) {
+        this.left = left;
+    }
+
+    public TreeNode getRight() {
+        return right;
+    }
+
+    public void setRight(TreeNode right) {
+        this.right = right;
     }
 }

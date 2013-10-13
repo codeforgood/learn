@@ -6,6 +6,7 @@
  * To change this template use File | Settings | File Templates.
  */
 import com.sravi.tree.BSTree;
+import com.sravi.tree.TreeNode;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -63,5 +64,30 @@ public class BSTreeTest {
         assertEquals(bst.find(1), true);
         assertEquals(bst.find(7), true);
         assertEquals(bst.find(8), false);
+    }
+
+    @Test
+    public void isMirrorTrees(){
+        BSTree bst1 = new BSTree();
+        TreeNode nodeL_1 = new TreeNode(3);
+        TreeNode nodeR_1 = new TreeNode(3);
+        TreeNode node = new TreeNode(5);
+        node.setLeft(nodeL_1);
+        node.setRight(nodeR_1);
+        bst1.setRoot(node);
+        assertTrue(bst1.isMirror());
+    }
+
+    @Test
+    public void isMirrorTrees_false(){
+        BSTree bst1 = new BSTree();
+        TreeNode nodeL_1 = new TreeNode(5);
+        TreeNode nodeR_1 = new TreeNode(7);
+        TreeNode node = new TreeNode(5);
+        node.setLeft(nodeL_1);
+        node.setRight(nodeR_1);
+        bst1.setRoot(node);
+        assertFalse(bst1.isMirror());
+
     }
 }
