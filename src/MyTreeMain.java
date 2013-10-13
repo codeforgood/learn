@@ -30,7 +30,6 @@ public class MyTreeMain {
 
         System.out.println("Search BST for, 5: " + ((bst.find(5) == true)? "Found":"Not Found"));
         System.out.println("Search BST for, 9: " + ((bst.find(9) == true)? "Found":"Not Found"));
-        System.out.println("Search BST for, 10: " + ((bst.find(10) == true)? "Found":"Not Found"));
 
         System.out.println("Is Binary search tree: " + bst.isBST());
 
