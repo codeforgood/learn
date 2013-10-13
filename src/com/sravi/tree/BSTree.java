@@ -133,4 +133,13 @@ public class BSTree{
         return isMirrorTree(this.root.left, this.root.right);
     }
 
+    private int getMaxTreeHeight(TreeNode node){
+        if (node == null) return 0;
+        return 1 + Math.max(getMaxTreeHeight(node.left), getMaxTreeHeight(node.right));
+    }
+
+    public int getHeight(){
+        return getMaxTreeHeight(this.root);
+    }
+
 }

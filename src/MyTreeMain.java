@@ -20,6 +20,9 @@ public class MyTreeMain {
         bst.addNode(8);
         bst.addNode(3);
         bst.addNode(10);
+        bst.addNode(1);
+        bst.addNode(0);
+        bst.addNode(12);
 
         System.out.print("PreOrder BST : ");
         bst.preOrder();
@@ -34,5 +37,7 @@ public class MyTreeMain {
         System.out.println("Is Binary search tree: " + bst.isBST());
 
         System.out.println("Is Mirror tree: " + bst.isMirror());
+
+        System.out.println("Height of tree: " + bst.getHeight());
     }
 }

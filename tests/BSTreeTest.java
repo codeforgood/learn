@@ -49,13 +49,25 @@ public class BSTreeTest {
     }
 
     @Test
-    public void checkRoot() {
+    public void testRoot() {
         assertEquals(bst.getRoot().getVal(), 1);
     }
 
     @Test
     public void isBSTree(){
         assertTrue(bst.isBST());
+    }
+
+    @Test
+    public void notBSTree(){
+        BSTree bst1 = new BSTree();
+        TreeNode nodeL_1 = new TreeNode(6);
+        TreeNode nodeR_1 = new TreeNode(3);
+        TreeNode node = new TreeNode(5);
+        node.setLeft(nodeL_1);
+        node.setRight(nodeR_1);
+        bst1.setRoot(node);
+        assertFalse(bst1.isBST());
     }
 
     @Test
@@ -79,7 +91,7 @@ public class BSTreeTest {
     }
 
     @Test
-    public void isMirrorTrees_false(){
+    public void notMirrorTree(){
         BSTree bst1 = new BSTree();
         TreeNode nodeL_1 = new TreeNode(5);
         TreeNode nodeR_1 = new TreeNode(7);
@@ -88,6 +100,5 @@ public class BSTreeTest {
         node.setRight(nodeR_1);
         bst1.setRoot(node);
         assertFalse(bst1.isMirror());
-
     }
 }
