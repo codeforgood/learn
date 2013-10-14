@@ -1,11 +1,9 @@
 package com.sravi.tree;
 
 /**
- * Created with IntelliJ IDEA.
  * User: sravi
  * Date: 10/13/13
  * Time: 12:19 AM
- * To change this template use File | Settings | File Templates.
  */
 public class TreeNode {
     int val;

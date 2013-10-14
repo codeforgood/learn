@@ -1,11 +1,9 @@
 package com.sravi.tree;
 
 /**
- * Created with IntelliJ IDEA.
  * User: sravi
  * Date: 10/13/13
  * Time: 12:20 AM
- * To change this template use File | Settings | File Templates.
  */
 public class BSTree{
 
@@ -160,8 +158,8 @@ public class BSTree{
      * @param node
      * @return
      */
-    private TreeNode findNextNode(TreeNode node) throws Exception{
-        if(node == null) throw new Exception("Node not found");
+    private TreeNode findNextNode(TreeNode node){
+        if(node == null) return null;
         if(node.getRight() != null){
             return leftMost(node.getRight());  //log(h)
         }else{
@@ -195,13 +193,15 @@ public class BSTree{
      * 2log(h) -> log(h)
      * @param key
      * @return
-     * @throws Exception
      */
-    public int findNext(int key) throws  Exception{
+    public int findNext(int key){
+
         TreeNode node = findNode(key);  //log(h)
+        if(node == null){
+            throw new IllegalArgumentException("Node with given key not found");
+        }
         TreeNode nextBigNode = findNextNode(node);   //log(h)
-        if (nextBigNode != null) return nextBigNode.getVal();
-        else throw new NullPointerException();
+        return (nextBigNode != null)? nextBigNode.getVal():Integer.MAX_VALUE;
     }
 
 }

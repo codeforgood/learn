@@ -1,9 +1,7 @@
-/**
- * Created with IntelliJ IDEA.
+/***
  * User: sravi
  * Date: 10/13/13
  * Time: 12:26 AM
- * To change this template use File | Settings | File Templates.
  */
 import com.sravi.tree.BSTree;
 import com.sravi.tree.TreeNode;
@@ -103,23 +101,24 @@ public class BSTreeTest {
         assertFalse(bst1.isMirror());
     }
 
-    @Test(expected = Exception.class)
-    public void testFindNext_invalid_key() throws Exception{
+    @Test
+    public void testFindNext_invalid_key(){
+        exception.expect(IllegalArgumentException.class);
         bst.findNext(17);
     }
 
     @Test
-    public void testFindNext_valid_key_1() throws Exception{
+    public void testFindNext_valid_key_1(){
         assertEquals(bst.findNext(4), 5);
     }
 
     @Test
-    public void testFindNext_valid_key_2() throws Exception{
+    public void testFindNext_valid_key_2(){
         assertEquals(bst.findNext(0), 1);
     }
 
-    @Test (expected = NullPointerException.class)
-    public void testFindNext_valid_key_3 () throws Exception{
-       bst.findNext(7);
+    @Test
+    public void testFindNext_valid_key_3 (){
+       assertEquals(bst.findNext(7), Integer.MAX_VALUE);
     }
 }
