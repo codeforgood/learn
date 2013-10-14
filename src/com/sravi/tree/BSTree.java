@@ -15,10 +15,10 @@ public class BSTree{
         root = null;
     }
 
-    private boolean findRNode(int val, TreeNode node){
-        if(node == null) return false;
+    private TreeNode findRNode(int val, TreeNode node){
+        if(node == null) return null;
         if(node.val == val){
-            return true;
+            return node;
         }else{
             if(node.val < val)
                 return findRNode(val, node.right);
@@ -27,13 +27,13 @@ public class BSTree{
         }
     }
 
-    private boolean findNode(int val){
+    private TreeNode findNode(int val){
         TreeNode current = root;
         while(true){
-            //return false once reach leaf
-            if(current == null) return false;
+            //return null once reach leaf
+            if(current == null) return null;
             if(current.val == val){
-                return true;
+                return current;
             }else{
                 if(val < current.val){
                     current = current.left;
@@ -105,8 +105,8 @@ public class BSTree{
     }
 
     public boolean find(int val){
-        //return findRNode(val, this.root);
-        return findNode(val);
+        if(findNode(val) != null) return true;
+        return false;
     }
 
     public void inOrder(){
@@ -140,6 +140,68 @@ public class BSTree{
 
     public int getHeight(){
         return getMaxTreeHeight(this.root);
+    }
+
+    /**
+     * find the left most node for the give node
+     * O(log(n))
+     * @param node
+     * @return
+     */
+    private TreeNode leftMost(TreeNode node){
+        TreeNode current = node;
+        while(current.getLeft() != null) current = current.getLeft(); // log(h)
+        return current;
+    }
+
+    /**
+     * find the next biggest node in the BST
+     * http://www.geeksforgeeks.org/inorder-successor-in-binary-search-tree/
+     * @param node
+     * @return
+     */
+    private TreeNode findNextNode(TreeNode node) throws Exception{
+        if(node == null) throw new Exception("Node not found");
+        if(node.getRight() != null){
+            return leftMost(node.getRight());  //log(h)
+        }else{
+            return findNextBigNodeFromRoot(node, this.root);
+        }
+    }
+
+    /**
+     * find the next big node for a given node from root
+     * o(h)
+     * @param node
+     * @param root
+     * @return
+     */
+    private TreeNode findNextBigNodeFromRoot(TreeNode node, TreeNode root) {
+        TreeNode succ_node = null;
+        TreeNode current = root;
+        while(current != null){
+            if(current.getVal() > node.getVal()){
+                succ_node=current;
+                current = current.getLeft();
+            }else if(current.getVal() < node.getVal()){
+                current = current.getRight();
+            }else
+                break;
+        }
+       return succ_node;
+    }
+
+    /**
+     * 2log(h) -> log(h)
+     * @param key
+     * @return
+     * @throws Exception
+     */
+    public int findNext(int key) throws  Exception{
+        TreeNode node = findNode(key);  //log(h)
+        TreeNode nextBigNode = findNextNode(node);   //log(h)
+        if (nextBigNode != null) return nextBigNode.getVal();
+        else throw new NullPointerException();
     }
 
 }

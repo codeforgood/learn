@@ -7,17 +7,18 @@
  */
 import com.sravi.tree.BSTree;
 import com.sravi.tree.TreeNode;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
+import org.junit.rules.ExpectedException;
+
 import static org.junit.Assert.*;
 
 
 public class BSTreeTest {
 
     static BSTree bst;
+
+    @Rule
+    public ExpectedException exception = ExpectedException.none();
 
     public BSTreeTest() {
     }
@@ -100,5 +101,25 @@ public class BSTreeTest {
         node.setRight(nodeR_1);
         bst1.setRoot(node);
         assertFalse(bst1.isMirror());
+    }
+
+    @Test(expected = Exception.class)
+    public void testFindNext_invalid_key() throws Exception{
+        bst.findNext(17);
+    }
+
+    @Test
+    public void testFindNext_valid_key_1() throws Exception{
+        assertEquals(bst.findNext(4), 5);
+    }
+
+    @Test
+    public void testFindNext_valid_key_2() throws Exception{
+        assertEquals(bst.findNext(0), 1);
+    }
+
+    @Test (expected = NullPointerException.class)
+    public void testFindNext_valid_key_3 () throws Exception{
+       bst.findNext(7);
     }
 }
